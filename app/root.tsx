@@ -38,8 +38,6 @@ export const meta: MetaFunction = () => ({
 })
 
 export default function App() {
-  const { css, hydrationScript } = extractStyles()
-  // {typeof document === 'undefined' ? '__STYLES__' : null}
   return (
     <html lang="en">
       <head>
@@ -48,7 +46,6 @@ export default function App() {
         {typeof document === 'undefined' ? '__STYLES__' : null}
       </head>
       <body>
-        {hydrationScript}
         <GlobalStyle />
         <header>
           <nav>
@@ -66,6 +63,7 @@ export default function App() {
         <Outlet />
         <ScrollRestoration />
         <Scripts />
+        {typeof document === 'undefined' ? '__SCRIPT__' : null}
         <LiveReload />
       </body>
     </html>
