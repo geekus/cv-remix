@@ -1,0 +1,12 @@
+{
+  "eslint.workingDirectories": ["blog-tutorial"],
+  "eslint.autoFixOnSave": true,
+  "coc.preferences.formatOnSaveFiletypes": [
+    "css",
+    "typescript",
+    "typescriptreact",
+    "javascript",
+    "json",
+    "prisma"
+  ]
+}

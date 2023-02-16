@@ -1,0 +1,70 @@
+version: '3'
+
+services:
+  web:
+    image: node:lts
+    network_mode: bridge
+    volumes:
+      - .:/usr/src/app
+    working_dir: /usr/src/app
+    tty: true
+    env_file:
+      - .env
+    environment:
+     - VIRTUAL_HOST=cv.local
+     - VIRTUAL_PORT=3000
+     # - ACME_CA_URI=https://acme-staging-v02.api.letsencrypt.org/directory
+     # - LETSENCRYPT_HOST=b7.eple.dev
+     # - LETSENCRYPT_EMAIL=havard.ranum@gmail.com
+    ports:
+      - 3000
+      - 8003:8003
+    command: npm run dev
+  # mongodb:
+  #   image: mongo
+  #   hostname: mongodb
+  #   restart: always
+  #   container_name: mongodb
+  #   ports:
+  #     - 27017:27017
+  #   networks:
+  #     - mongo-network
+  #   healthcheck:
+  #     test: test $$(echo "rs.initiate().ok || rs.status().ok" | mongo -u mongo -p mongo --quiet) -eq 1
+  #     interval: 10s
+  #     start_period: 30s
+  #   command: ["--replSet", "dbrs", "--bind_ip_all"]
+
+# networks:
+  # mongo-network:
+  #   driver: bridge
+  # sanity:
+  #   image: node:16-alpine3.14
+  #   network_mode: bridge
+  #   volumes:
+  #     - .:/usr/src/app
+  #   working_dir: /usr/src/app
+  #   tty: true
+  #   env_file:
+  #     - .env
+  #   environment:
+  #    - VIRTUAL_HOST=sanity.flyr.local
+  #    - VIRTUAL_PORT=3333
+  #   ports:
+  #     - 3333
+  #   command: npm run sanity
+  # storybook:
+  #   image: node:16-alpine3.14
+  #   network_mode: bridge
+  #   volumes:
+  #     - .:/usr/src/app
+  #   working_dir: /usr/src/app
+  #   tty: true
+  #   env_file:
+  #     - .env
+  #   environment:
+  #    - VIRTUAL_HOST=storybook.flyr.local
+  #    - VIRTUAL_PORT=8088
+  #   ports:
+  #     - 8088
+  #   command: npm run storybook
