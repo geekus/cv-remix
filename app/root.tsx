@@ -10,16 +10,16 @@ import {
 } from '@remix-run/react'
 import { createGlobalStyle } from 'styled-components'
 import { extractStyles } from 'evergreen-ui'
-import LogRocket from 'logrocket'
+// import LogRocket from 'logrocket'
 import { getUrl, routes } from '~/routes'
 import { MyButton } from '~/components/MyButton'
 
-LogRocket.init('thyndr/cv')
-
-LogRocket.identify('user1234', {
-  name: 'Test Testesen',
-  email: 'hi@eple.dev',
-})
+// LogRocket.init('thyndr/cv')
+//
+// LogRocket.identify('user1234', {
+//   name: 'Test Testesen',
+//   email: 'hi@eple.dev',
+// })
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -38,16 +38,14 @@ export const meta: MetaFunction = () => ({
 })
 
 export default function App() {
-  // const { css, hydrationScript } = extractStyles()
-  // {typeof document === 'undefined' ? '__STYLES__' : null}
   return (
     <html lang="en">
       <head>
         <Meta />
         <Links />
+        {typeof document === 'undefined' ? '__STYLES__' : null}
       </head>
       <body>
-        {/* {hydrationScript} */}
         <GlobalStyle />
         <header>
           <nav>
@@ -65,6 +63,7 @@ export default function App() {
         <Outlet />
         <ScrollRestoration />
         <Scripts />
+        {typeof document === 'undefined' ? '__SCRIPT__' : null}
         <LiveReload />
       </body>
     </html>

@@ -10,6 +10,10 @@
     "build:wc": "esbuild ./src/components/BigButton.tsx --bundle --outdir=public/wc/"
   },
   "dependencies": {
+    "@emotion/cache": "^11.10.5",
+    "@emotion/react": "^11.10.5",
+    "@emotion/server": "^11.10.0",
+    "@emotion/styled": "^11.10.5",
     "@prisma/client": "^4.9.0",
     "@remix-run/node": "^1.12.0",
     "@remix-run/react": "^1.12.0",
