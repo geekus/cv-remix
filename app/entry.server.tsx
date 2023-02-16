@@ -26,7 +26,7 @@ export default function handleRequest(
   responseHeaders: Headers,
   remixContext: EntryContext
 ) {
-  const { css } = extractStyles()
+  const { css, hydrationScript } = extractStyles()
   let markup = renderToString(
     <CacheProvider value={cache}>
       <RemixServer context={remixContext} url={request.url} />
@@ -36,7 +36,10 @@ export default function handleRequest(
   const chunks = extractCriticalToChunks(markup)
   const styles = constructStyleTagsFromChunks(chunks)
 
-  markup = markup.replace('__STYLES__', styles + `<style>${css}</style>`)
+  markup = markup.replace(
+    '__STYLES__',
+    styles + `<style>${css}</style>` + renderToString(hydrationScript)
+  )
 
   responseHeaders.set('Content-Type', 'text/html')
 
